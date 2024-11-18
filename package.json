@@ -1,7 +1,7 @@
 {
   "name": "inzhenerka.tech.diploma",
   "version": "1.0.0",
-  "description": "Inzhenerka.Tech - JS / Playwright courses diploma project\\\r Aleksei Perchukov 2024",
+  "description": "Inzhenerka.Tech - JS / Playwright courses diploma project / Aleksei Perchukov 2024",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
@@ -9,6 +9,8 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.49.0",
-    "@types/node": "^22.9.0"
+    "@types/node": "^22.9.0",
+    "allure-commandline": "^2.24.1",
+    "allure-playwright": "^2.4.0"
   }
 }
