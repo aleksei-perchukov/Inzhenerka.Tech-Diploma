@@ -11,7 +11,7 @@ export default defineConfig({
   reporter: [["line"], ["allure-playwright",
     {
       detail: false,
-      mode: minimal,
+      mode: 'minimal',
       outputFolder: 'allure-results',
       suiteTitle: true,
       environmentInfo: {
