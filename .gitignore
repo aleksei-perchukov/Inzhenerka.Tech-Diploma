@@ -1,9 +1,0 @@
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/allure-results/
-/node_modules/
-
-playwright/.auth
-.env
