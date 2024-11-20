@@ -43,22 +43,14 @@ jobs:
         LOGIN: ${{ secrets.LOGIN }}
         PASSWORD: ${{ secrets.PASSWORD }}
       run: npx playwright test
-    - name: Publish Allure report.
-      uses: peaceiris/actions-gh-pages@v3
-      if: always()
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: pages
-        publish_dir: allure-report
-        
+
     - name: Get Allure history
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       if: always()
       continue-on-error: true
       with:
         ref: gh-pages
         path: gh-pages
-    
     - name: Allure Report action from marketplace
       uses: simple-elf/allure-report-action@master
       if: always()
@@ -69,11 +61,13 @@ jobs:
         allure_report: allure-report
         allure_history: allure-history
         keep_reports: 20      
-    
-    - name: Deploy report to GitHub Pages
+    - name: Publish Allure report
       if: always()
       uses: peaceiris/actions-gh-pages@v3
       with:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: allure-history
+        PUBLISH_DIR: allure-history        
+
+    
+
