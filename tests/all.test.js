@@ -55,28 +55,36 @@ test.describe('dev.topklik.online', async () => {
         const color = 'N-103 Gray Onix';
         const mainPage = new MainPage(page);
 
+        await page.waitForTimeout(1000);
         await mainPage.selectPShaped();
+        await page.waitForTimeout(1000);
         await mainPage.selectThickness(thickness);
+        await page.waitForTimeout(1000);
         await mainPage.removePlinth();
+        await page.waitForTimeout(1000);
         await mainPage.addIsland();
+        await page.waitForTimeout(1000);
         await mainPage.addWaterDrainage();
         await mainPage.selectColor(color);
+        await page.waitForTimeout(1000);
         await mainPage.clickCalculateButton();
+        await page.waitForTimeout(1000);
+
         const newPagePromise = context.waitForEvent('page', { timeout: 20000 });
         await mainPage.clickReportButton();
-
+        await page.waitForTimeout(1000);
         const newPage = await newPagePromise;
         await newPage.waitForLoadState();
 
         await newPage.bringToFront();
         const calculationPage = new CalculationPage(newPage);
         const material = 'acryl:Neomarm:N-103 Gray Onix';
-        const topTableType = 'П-образная';
+        const tableTopType = 'П-образная';
         const option = 'Проточки для стока воды';
         const total = '499200.00 ₽';
-        await expect(calculationPage.materialValue, '123').toContainText(material);
-        await expect(calculationPage.topTableTypeValue, '123').toHaveText(topTableType);
-        await expect(calculationPage.optionsValue, '123').toContainText(option);
-        await expect(calculationPage.total, '123').toContainText(total);
+        await expect(calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material);
+        await expect(calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType);
+        await expect(calculationPage.optionsValue, `Check options include '${option}'`).toContainText(option);
+        await expect(calculationPage.total, `Check total is ${total}`).toContainText(total);
     });
 });

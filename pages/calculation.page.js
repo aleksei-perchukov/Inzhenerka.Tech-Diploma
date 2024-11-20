@@ -4,9 +4,9 @@ export class CalculationPage {
     constructor(page) {
         this.page = page;
         this.table = page.locator('.table');
-        this.materialValue = page.locator(`//td[contains(text(), 'Материал')]//td[class='col-2']`);
-        this.topTableTypeValue = page.locator(`//td[contains(text(), 'Тип столешницы')]//td[class='col-2']`);
-        this.optionsValue = page.locator(`//td[contains(text() , 'Расчет работ')]//td[class='col-5'][1]`);
-        this.total = page.locator(`//td[contains(text(), 'Стоимость итоговая')]//td[class='col-2'][2]`);
+        this.materialValue = page.locator(`//td[contains(text(), 'Материал')]/following-sibling::td[@class='col-2'][1]`);
+        this.tableTopTypeValue = page.locator(`//td[contains(text(), 'Тип столешницы')]/following-sibling::td[@class='col-2'][1]`);
+        this.optionsValue = page.locator(`//h3[contains(text() , 'Расчет работ')]/following-sibling::h4[1]/following-sibling::table[1]/tbody[1]/tr[3]/td[2]`);
+        this.total = page.locator(`//td[contains(text(), 'Стоимость итоговая')]/following-sibling::td[3]`);
     }
 }

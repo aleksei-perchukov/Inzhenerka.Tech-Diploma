@@ -13,7 +13,7 @@ export class MainPage {
         this.island = page.getByTestId('product-item').getByText('Остров');
         this.water = page.getByTestId('options-item').getByText('Проточки для стока воды');
         this.colors = page.getByTestId('stone-block');
-        this.countButton = page.getByTestId('calc-button');
+        this.calculateButton = page.getByTestId('calc-button');
         this.reportButton = page.getByTestId('open-report-button');
     }
 
@@ -62,12 +62,13 @@ export class MainPage {
 
     async clickCalculateButton() {
         test.step('Click on "Calculate" button', async () => {
-            await this.countButton.click();
+            await this.calculateButton.click();
         })
     }
 
     async clickReportButton() {
         test.step(`Click on 'Report' button`, async () => {
+            
             await this.reportButton.click();
         })
     }
