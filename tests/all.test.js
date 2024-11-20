@@ -66,7 +66,7 @@ test.describe('dev.topklik.online', async () => {
         await mainPage.selectColor(color);
         await mainPage.clickCalculateButton();
 
-        const newPagePromise = context. waitForEvent('page', { timeout: 20000 });
+        const newPagePromise = context.waitForEvent('page', { timeout: 20000 });
         await mainPage.clickReportButton();
         const newPage = await newPagePromise;
         await newPage.waitForLoadState();
@@ -78,9 +78,9 @@ test.describe('dev.topklik.online', async () => {
         const option = 'Проточки для стока воды';
         const total = '451500.00 ₽';
 
-        await expect.soft(calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material);
-        await expect.soft(calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType);
-        await expect.soft(calculationPage.optionsValue, `Check options include '${option}'`).toContainText(option);
-        await expect.soft(calculationPage.total, `Check total is ${total}`).toContainText(total);
+        expect.soft(await calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material);
+        expect.soft(await calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType);
+        expect.soft(await calculationPage.optionsValue, `Check options include '${option}'`).toContainText(option);
+        expect.soft(await calculationPage.total, `Check total is ${total}`).toContainText(total);
     });
 });

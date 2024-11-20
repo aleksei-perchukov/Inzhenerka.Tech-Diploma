@@ -26,8 +26,8 @@ export class MainPage {
     async checkLoginName() {
         test.step('Check user is logged in', async () => {
             const userName = process.env.LOGIN[0].toUpperCase() + process.env.LOGIN.substring(1, 6);
-            await expect.soft(this.orderList).toBeVisible();
-            await expect(this.userName, `Check username is '${userName}'`).toHaveText(userName);
+            expect.soft(await this.orderList).toBeVisible();
+            expect(await this.userName, `Check username is '${userName}'`).toHaveText(userName);
         });
     }
 
@@ -35,7 +35,7 @@ export class MainPage {
         test.step('Click on "Hide TableTop" button', async () => {
             await expect.soft(this.showTableTopTitle, "Check 'Show TableTop' title is not visible").toBeHidden();
             await this.tableTopToggle.click();
-            await expect.soft(this.showTableTopTitle, "Check 'Show TableTop' title is visible").toBeVisible();
+            expect.soft(await this.showTableTopTitle, "Check 'Show TableTop' title is visible").toBeVisible();
         })
     };
 
@@ -43,7 +43,7 @@ export class MainPage {
         test.step('Click on "P-Shaped" button', async () => {
             const tableTopText = 'П-образная столешница';
             await this.pShapedButton.click();
-            await expect.soft(this.tableTopType, `Check ${tableTopText} title is visible`).toHaveText(tableTopText);
+            expect.soft(await this.tableTopType, `Check ${tableTopText} title is visible`).toHaveText(tableTopText);
         })
     };
 
@@ -51,21 +51,21 @@ export class MainPage {
         test.step(`Select '${thicknessValue}' width`, async () => {
             this.thickness.first().click();
             this.thickness.getByText(`${thicknessValue}`).click();
-            await expect.soft(this.thicknessAssert, `Check thickness is ${thicknessValue}`).toHaveText(thicknessValue.toString());
+            expect.soft(await this.thicknessAssert, `Check thickness is ${thicknessValue}`).toHaveText(thicknessValue.toString());
         });
     }
 
     async removePlinth() {
         test.step(`Click on 'Plinth' button`, async () => {
             await this.plinth.click();
-            await expect.soft(this.plinthAssert, `Check plinth is removed`).toHaveCount(5);
+            expect.soft(await this.plinthAssert, `Check plinth is removed`).toHaveCount(5);
         })
     };
 
     async addIsland() {
         test.step(`Add 'Island' option`, async () => {    
             await this.island.click();
-            await expect.soft(this.islandAssert, `Check 'Island' option is added`).toBeVisible();
+            expect.soft(await this.islandAssert, `Check 'Island' option is added`).toBeVisible();
         })
     };
 
@@ -73,22 +73,24 @@ export class MainPage {
         test.step(`Add 'Water drainage' option`, async () => {
             const text = 'Проточки для стока воды';
             await this.water.click();
-            await expect.soft(this.waterAssert, `Check 'Water drainage' option is added`).toHaveText(text);
+            expect.soft(await this.waterAssert, `Check 'Water drainage' option is added`).toHaveText(text);
         })
     };
 
     async selectColor(colorValue) {
         test.step(`Select '${colorValue}' color`, async () => {
             await this.colors.getByText(`${colorValue}`).click();
-            await expect.soft(this.colorAssert, `Check color is ${colorValue}`).toContainText(colorValue);
+            expect.soft(await this.colorAssert, `Check color is ${colorValue}`).toContainText(colorValue);
         });
     }
 
     async clickCalculateButton() {
         test.step('Click on "Calculate" button', async () => {
             const text = 'Расчет';
+            await this.page.waitForTimeout(2000);
             await this.calculateButton.click();
-            await expect.soft(this.reportButton, `Check '${text}' button is clickable`).toHaveText('Расчет');
+            await this.page.waitForTimeout(5000);
+            expect(await this.reportButton, `Check '${text}' button is clickable`).toHaveText('Расчет');
         })
     }
 
