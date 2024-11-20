@@ -65,6 +65,7 @@ test.describe('dev.topklik.online', async () => {
         await mainPage.addIsland();
         await page.waitForTimeout(1000);
         await mainPage.addWaterDrainage();
+        await page.waitForTimeout(1000);
         await mainPage.selectColor(color);
         await page.waitForTimeout(1000);
         await mainPage.clickCalculateButton();
