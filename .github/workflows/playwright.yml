@@ -48,7 +48,7 @@ jobs:
       if: always()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: master
+        publish_branch: pages
         publish_dir: allure-report
         
     - name: Get Allure history
