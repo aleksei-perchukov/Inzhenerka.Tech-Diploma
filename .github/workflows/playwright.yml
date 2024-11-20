@@ -37,6 +37,11 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
+      env:
+        CI: ${{ vars.CI }}
+        HEADLESS: ${{ vars.HEADLESS }}
+        LOGIN: ${{ secrets.LOGIN }}
+        PASSWORD: ${{ secrets.PASSWORD }}
       run: npx playwright test
 
     - name: Generate Allure Report
