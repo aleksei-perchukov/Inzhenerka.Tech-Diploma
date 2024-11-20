@@ -10,7 +10,8 @@ export default defineConfig({
   workers: 1,
   reporter: [["line"], ["allure-playwright",
     {
-      detail: true,
+      detail: false,
+      mode: minimal,
       outputFolder: 'allure-results',
       suiteTitle: true,
       environmentInfo: {
