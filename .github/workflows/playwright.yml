@@ -19,13 +19,14 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
-      - name: Generate Allure Report
-        run: |
+
+    - name: Generate Allure Report
+      run: |
           allure generate allure-results --clean -o allure-report
           allure open allure-report --port 8888 &
 
-      - name: Upload Allure Report as an Artifact
-        uses: actions/upload-artifact@v3
-        with:
+    - name: Upload Allure Report as an Artifact
+      uses: actions/upload-artifact@v3
+      with:
           name: allure-report
           path: allure-report
