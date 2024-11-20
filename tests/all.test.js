@@ -31,6 +31,7 @@ test.describe('dev.topklik.online', async () => {
         const mainPage = new MainPage(page);
         await expect(mainPage.showTableTopTitle, "Check 'Show TableTop' title is not visible").toBeHidden();
         await mainPage.hideTableTop();
+        await page.waitForTimeout(1000);
         await expect(mainPage.showTableTopTitle, "Check 'Show TableTop' title is visible").toBeVisible();
     });
 
@@ -43,6 +44,7 @@ test.describe('dev.topklik.online', async () => {
 
         const mainPage = new MainPage(page);
         await mainPage.selectPShaped();
+        await page.waitForTimeout(1000);
         await expect(mainPage.tableTopType, `Check ${text} title is visible`).toHaveText(text);
     });
 
