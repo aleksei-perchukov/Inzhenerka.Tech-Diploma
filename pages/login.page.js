@@ -16,6 +16,7 @@ export class LoginPage {
             await this.loginField.fill(login);
             await this.passwordField.fill(password);
             await this.button.click();
+            await this.page.waitForTimeout(2000);
         });
     }
 }

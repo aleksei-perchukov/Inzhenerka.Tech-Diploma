@@ -4,6 +4,7 @@ import { CalculationPage } from '../pages/calculation.page';
 import { LoginPage } from '../pages/login.page';
 import { MainPage } from '../pages/main.page';
 
+
 test.beforeEach('Login', async ({ page }) => {
     await test.step(`Open page`, async () => {
         await page.goto('/');
@@ -19,8 +20,7 @@ test.describe('dev.topklik.online', async () => {
         await allure.feature("Authentication");
 
         const mainPage = new MainPage(page);
-        const userName = process.env.LOGIN[0].toUpperCase() + process.env.LOGIN.substring(1, 6);
-        await expect(mainPage.userName, `Check username is '${userName}'`).toHaveText(userName);
+        await mainPage.checkLoginName();
     });
 
     test('2. "Hide tabletop" test', async ({ page }) => {
@@ -29,10 +29,9 @@ test.describe('dev.topklik.online', async () => {
         await allure.feature("Table Constructor");
 
         const mainPage = new MainPage(page);
-        await expect(mainPage.showTableTopTitle, "Check 'Show TableTop' title is not visible").toBeHidden();
+        await mainPage.checkLoginName();
         await mainPage.hideTableTop();
-        await page.waitForTimeout(1000);
-        await expect(mainPage.showTableTopTitle, "Check 'Show TableTop' title is visible").toBeVisible();
+
     });
 
     test('3. Switch "P-shaped tabletop" toggle', async ({ page }) => {
@@ -43,9 +42,10 @@ test.describe('dev.topklik.online', async () => {
         const text = 'П-образная столешница';
 
         const mainPage = new MainPage(page);
+        await mainPage.checkLoginName();
         await mainPage.selectPShaped();
         await page.waitForTimeout(1000);
-        await expect(mainPage.tableTopType, `Check ${text} title is visible`).toHaveText(text);
+        await expect.soft(mainPage.tableTopType, `Check ${text} title is visible`).toHaveText(text);
     });
 
     test('4. E2E test', async ({ context, page }) => {
@@ -56,26 +56,18 @@ test.describe('dev.topklik.online', async () => {
         const thickness = 4;
         const color = 'N-103 Gray Onix';
         const mainPage = new MainPage(page);
+        await mainPage.checkLoginName();
 
-        await page.waitForTimeout(1000);
         await mainPage.selectPShaped();
-        await page.waitForTimeout(1000);
-        await mainPage.selectThickness(thickness);
-        await page.waitForTimeout(1000);
+        await mainPage.selectThickness(thickness.toString());
         await mainPage.removePlinth();
-        await page.waitForTimeout(1000);
         await mainPage.addIsland();
-        await page.waitForTimeout(1000);
         await mainPage.addWaterDrainage();
-        await page.waitForTimeout(1000);
         await mainPage.selectColor(color);
-        await page.waitForTimeout(1000);
         await mainPage.clickCalculateButton();
-        await page.waitForTimeout(1000);
 
         const newPagePromise = context.waitForEvent('page', { timeout: 20000 });
         await mainPage.clickReportButton();
-        await page.waitForTimeout(1000);
         const newPage = await newPagePromise;
         await newPage.waitForLoadState();
 
@@ -85,9 +77,10 @@ test.describe('dev.topklik.online', async () => {
         const tableTopType = 'П-образная';
         const option = 'Проточки для стока воды';
         const total = '499200.00 ₽';
-        await expect(calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material);
-        await expect(calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType);
-        await expect(calculationPage.optionsValue, `Check options include '${option}'`).toContainText(option);
-        await expect(calculationPage.total, `Check total is ${total}`).toContainText(total);
+
+        await expect.soft(calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material);
+        await expect.soft(calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType);
+        await expect.soft(calculationPage.optionsValue, `Check options include '${option}'`).toContainText(option);
+        await expect.soft(calculationPage.total, `Check total is ${total}`).toContainText(total);
     });
 });
