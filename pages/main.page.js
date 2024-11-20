@@ -26,25 +26,24 @@ export class MainPage {
     async checkLoginName() {
         test.step('Check user is logged in', async () => {
             const userName = process.env.LOGIN[0].toUpperCase() + process.env.LOGIN.substring(1, 6);
-            await expect(this.orderList).toBeVisible();
+            await expect.soft(this.orderList).toBeVisible();
             await expect(this.userName, `Check username is '${userName}'`).toHaveText(userName);
         });
     }
 
     async hideTableTop() {
         test.step('Click on "Hide TableTop" button', async () => {
-            await expect(this.showTableTopTitle, "Check 'Show TableTop' title is not visible").toBeHidden();
+            await expect.soft(this.showTableTopTitle, "Check 'Show TableTop' title is not visible").toBeHidden();
             await this.tableTopToggle.click();
-            await expect(this.showTableTopTitle, "Check 'Show TableTop' title is visible").toBeVisible();
+            await expect.soft(this.showTableTopTitle, "Check 'Show TableTop' title is visible").toBeVisible();
         })
     };
 
     async selectPShaped() {
         test.step('Click on "P-Shaped" button', async () => {
             const tableTopText = 'П-образная столешница';
-            await this.page.waitForTimeout(2000);
             await this.pShapedButton.click();
-            await expect(this.tableTopType, `Check ${tableTopText} title is visible`).toHaveText(tableTopText);
+            await expect.soft(this.tableTopType, `Check ${tableTopText} title is visible`).toHaveText(tableTopText);
         })
     };
 
@@ -52,47 +51,44 @@ export class MainPage {
         test.step(`Select '${thicknessValue}' width`, async () => {
             this.thickness.first().click();
             this.thickness.getByText(`${thicknessValue}`).click();
-            await expect(this.thicknessAssert, `Check thickness is ${thicknessValue}`).toHaveText(thicknessValue.toString());
+            await expect.soft(this.thicknessAssert, `Check thickness is ${thicknessValue}`).toHaveText(thicknessValue.toString());
         });
     }
 
     async removePlinth() {
         test.step(`Click on 'Plinth' button`, async () => {
-            await this.page.waitForTimeout(2000);
             await this.plinth.click();
-            await expect(this.plinthAssert, `Check plinth is removed`).toHaveCount(5);
+            await expect.soft(this.plinthAssert, `Check plinth is removed`).toHaveCount(5);
         })
     };
 
     async addIsland() {
-        test.step(`Add 'Island' option`, async () => {
+        test.step(`Add 'Island' option`, async () => {    
             await this.island.click();
-            await expect(this.islandAssert, `Check 'Island' option is added`).toBeVisible();
+            await expect.soft(this.islandAssert, `Check 'Island' option is added`).toBeVisible();
         })
     };
 
     async addWaterDrainage() {
         test.step(`Add 'Water drainage' option`, async () => {
             const text = 'Проточки для стока воды';
-            await this.page.waitForTimeout(1000);
             await this.water.click();
-            await expect(this.waterAssert, `Check 'Water drainage' option is added`).toHaveText(text);
+            await expect.soft(this.waterAssert, `Check 'Water drainage' option is added`).toHaveText(text);
         })
     };
 
     async selectColor(colorValue) {
         test.step(`Select '${colorValue}' color`, async () => {
             await this.colors.getByText(`${colorValue}`).click();
-            await expect(this.colorAssert, `Check color is ${colorValue}`).toContainText(colorValue);
+            await expect.soft(this.colorAssert, `Check color is ${colorValue}`).toContainText(colorValue);
         });
     }
 
     async clickCalculateButton() {
         test.step('Click on "Calculate" button', async () => {
             const text = 'Расчет';
-            await this.page.waitForTimeout(2000);
             await this.calculateButton.click();
-            await expect(this.reportButton, `Check '${text}' button is clickable`).toHaveText('Расчет');
+            await expect.soft(this.reportButton, `Check '${text}' button is clickable`).toHaveText('Расчет');
         })
     }
 
