@@ -19,7 +19,7 @@ export class LoginPage {
             await this.page.waitForTimeout(500);
             await this.passwordField.fill(password);
             await this.page.waitForTimeout(500);
-            await this.button.dblclick({timeout: 20000, force: true});
+            await this.button.dblclick({ timeout: 20000, force: true });
             await this.page.waitForTimeout(1000);
         })
     }
