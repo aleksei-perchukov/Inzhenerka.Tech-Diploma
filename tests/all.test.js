@@ -76,7 +76,7 @@ test.describe('dev.topklik.online', async () => {
         const material = 'acryl:Neomarm:N-103 Gray Onix';
         const tableTopType = 'П-образная';
         const option = 'Проточки для стока воды';
-        const total = '451500.00 ₽';
+        const total = '500000.00 ₽';
 
         expect.soft(await calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material);
         expect.soft(await calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType);
