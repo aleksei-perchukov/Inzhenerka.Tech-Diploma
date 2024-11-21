@@ -43,7 +43,7 @@ export class MainPage {
         await test.step('Click on "P-Shaped" button', async () => {
             const tableTopText = 'П-образная столешница';
             await this.pShapedButton.click({ timeout: 20000 });
-            await expect.soft(this.tableTopType, `Check ${tableTopText} title is visible`).toHaveText(tableTopText, { timeout: 20000 });
+            await expect.soft(this.tableTopType, `Check '${tableTopText}' title is visible`).toHaveText(tableTopText, { timeout: 20000 });
         })
     }
 
@@ -94,8 +94,6 @@ export class MainPage {
     }
 
     async clickReportButton() {
-        await test.step(`Click on 'Report' button`, async () => {
-            await this.reportButton.dblclick({ timeout: 20000, force: true });
-        })
+        await this.reportButton.dblclick({ timeout: 20000, force: true });
     }
 }

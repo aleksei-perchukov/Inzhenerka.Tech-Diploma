@@ -61,12 +61,13 @@ test.describe('dev.topklik.online', async () => {
         await mainPage.selectColor(color);
         await mainPage.clickCalculateButton();
 
-        const newPagePromise = context.waitForEvent('page', { timeout: 20000 });
-        await mainPage.clickReportButton();
-        const newPage = await newPagePromise;
-        await newPage.waitForLoadState();
-
-        await newPage.bringToFront();
+        await test.step(`Click on 'Report' button and open summary page`, async () => {
+            const newPagePromise = context.waitForEvent('page', { timeout: 20000 });
+            await mainPage.clickReportButton();
+            const newPage = await newPagePromise;
+            await newPage.waitForLoadState();
+            await newPage.bringToFront();
+        });
         const calculationPage = new CalculationPage(newPage);
         const material = 'acryl:Neomarm:N-103 Gray Onix';
         const tableTopType = 'П-образная';
