@@ -4,7 +4,7 @@ export class MainPage {
     constructor(page) {
         this.page = page;
         this.userName = page.locator('[class^="style_workerInfo__"]').first();
-        this.tableTopToggle = page.getByTestId('hide-countertop');
+        this.tableTopToggle = page.getByTestId('hide-countertop').locator('img');
         this.showTableTopTitle = page.getByTestId('show-main');
         this.pShapedButton = page.getByTestId('countertop-type-u');
         this.tableTopType = page.getByTestId('order-list').locator('h4').first();
@@ -36,7 +36,7 @@ export class MainPage {
             await expect.soft(this.showTableTopTitle, "Check 'Show TableTop' title is not visible").toBeHidden();
             await this.tableTopToggle.click();
             expect.soft(await this.showTableTopTitle, "Check 'Show TableTop' title is visible").toBeVisible();
-        })
+        }); 
     };
 
     async selectPShaped() {
@@ -44,7 +44,7 @@ export class MainPage {
             const tableTopText = 'П-образная столешница';
             await this.pShapedButton.click();
             expect.soft(await this.tableTopType, `Check ${tableTopText} title is visible`).toHaveText(tableTopText);
-        })
+        });
     };
 
     async selectThickness(thicknessValue) {
@@ -59,14 +59,14 @@ export class MainPage {
         test.step(`Click on 'Plinth' button`, async () => {
             await this.plinth.click();
             expect.soft(await this.plinthAssert, `Check plinth is removed`).toHaveCount(5);
-        })
+        });
     };
 
     async addIsland() {
         test.step(`Add 'Island' option`, async () => {    
             await this.island.click();
             expect.soft(await this.islandAssert, `Check 'Island' option is added`).toBeVisible();
-        })
+        });
     };
 
     async addWaterDrainage() {
@@ -74,7 +74,7 @@ export class MainPage {
             const text = 'Проточки для стока воды';
             await this.water.click();
             expect.soft(await this.waterAssert, `Check 'Water drainage' option is added`).toHaveText(text);
-        })
+        });
     };
 
     async selectColor(colorValue) {
@@ -91,12 +91,12 @@ export class MainPage {
             await this.calculateButton.click();
             await this.page.waitForTimeout(5000);
             expect(await this.reportButton, `Check '${text}' button is clickable`).toHaveText('Расчет');
-        })
+        });
     }
 
     async clickReportButton() {
         test.step(`Click on 'Report' button`, async () => {
             await this.reportButton.click();
-        })
+        });
     }
 }
