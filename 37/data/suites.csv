@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","10660","1. Authorization","chromium","Thu Nov 21 11:47:10 GMT 2024","passed","Thu Nov 21 11:47:21 GMT 2024","dev.topklik.online","all.test.js","",""
+"","12858","3. Switch ""P-shaped tabletop"" toggle","chromium","Thu Nov 21 11:47:10 GMT 2024","passed","Thu Nov 21 11:47:23 GMT 2024","dev.topklik.online","all.test.js","",""
+"","12880","4. E2E test","chromium","Thu Nov 21 11:47:35 GMT 2024","failed","Thu Nov 21 11:47:48 GMT 2024","dev.topklik.online","all.test.js","",""
+"","12813","2. ""Hide tabletop"" test","chromium","Thu Nov 21 11:47:10 GMT 2024","passed","Thu Nov 21 11:47:23 GMT 2024","dev.topklik.online","all.test.js","",""
