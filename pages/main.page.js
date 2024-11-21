@@ -1,8 +1,9 @@
 import { expect, test } from '@playwright/test';
 
 export class MainPage {
-    constructor(page) {
+    constructor(context, page) {
         this.page = page;
+        this.context = context;
         this.userName = page.locator('[class^="style_workerInfo__"]').first();
         this.tableTopToggle = page.getByTestId('hide-countertop').locator('img');
         this.showTableTopTitle = page.getByTestId('show-main');
@@ -94,6 +95,16 @@ export class MainPage {
     }
 
     async clickReportButton() {
-        await this.reportButton.dblclick({ timeout: 20000, force: true });
+        await test.step(`Click on 'Report' button and open summary page`, async () => {
+            await this.reportButton.dblclick({ timeout: 20000, force: true });
+        });
+    }
+
+    async goToSummaryPage() {
+        const newPagePromise = this.context.waitForEvent('page', { timeout: 20000 });
+        await this.clickReportButton();
+        const newPage = await newPagePromise;
+        await newPage.waitForLoadState();
+        return await newPage;
     }
 }

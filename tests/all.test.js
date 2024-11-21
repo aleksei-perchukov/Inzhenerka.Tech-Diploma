@@ -14,16 +14,16 @@ test.beforeEach('Login', async ({ page }) => {
 })
 
 test.describe('dev.topklik.online', async () => {
-    test('1. Authorization', async ({ page }) => {
+    test('1. Authorization', async ({ context, page }) => {
         await allure.owner('Aleksei Perchukov');
         await allure.tags('Positive', 'Login Page');
         await allure.feature("Authentication");
 
-        const mainPage = new MainPage(page);
+        const mainPage = new MainPage(context, page);
         await mainPage.checkLoginName();
     });
 
-    test('2. "Hide tabletop" test', async ({ page }) => {
+    test('2. "Hide tabletop" test', async ({ context, page }) => {
         await allure.owner('Aleksei Perchukov');
         await allure.tags('Positive', 'Main Page');
         await allure.feature("Table Constructor");
@@ -32,14 +32,14 @@ test.describe('dev.topklik.online', async () => {
         await mainPage.hideTableTop();
     });
 
-    test('3. Switch "P-shaped tabletop" toggle', async ({ page }) => {
+    test('3. Switch "P-shaped tabletop" toggle', async ({ context, page }) => {
         await allure.owner('Aleksei Perchukov');
         await allure.tags('Positive', 'Main Page');
         await allure.feature("Table Constructor");
 
         const text = 'П-образная столешница';
 
-        const mainPage = new MainPage(page);
+        const mainPage = new MainPage(context, page);
         await mainPage.selectPShaped();
         await expect.soft(mainPage.tableTopType, `Check ${text} title is visible`).toHaveText(text);
     });
@@ -51,7 +51,7 @@ test.describe('dev.topklik.online', async () => {
 
         const thickness = 4;
         const color = 'N-103 Gray Onix';
-        const mainPage = new MainPage(page);
+        const mainPage = new MainPage(context, page);
 
         await mainPage.selectPShaped();
         await mainPage.selectThickness(thickness.toString());
@@ -60,12 +60,8 @@ test.describe('dev.topklik.online', async () => {
         await mainPage.addWaterDrainage();
         await mainPage.selectColor(color);
         await mainPage.clickCalculateButton();
-
-        await test.step(`Click on 'Report' button and open summary page`, async () => {
-            const newPagePromise = context.waitForEvent('page', { timeout: 20000 });
-            await mainPage.clickReportButton();
-            const newPage = await newPagePromise;
-            await newPage.waitForLoadState();
+        const newPage = await mainPage.goToSummaryPage();
+        await test.step(`Switch on new tab`, async () => {
             await newPage.bringToFront();
         });
         const calculationPage = new CalculationPage(newPage);
