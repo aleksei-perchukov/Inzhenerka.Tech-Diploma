@@ -97,7 +97,7 @@ export class MainPage {
     async clickReportButton() {
         await test.step(`Click on 'Report' button and open summary page`, async () => {
             await this.reportButton.dblclick({ timeout: 20000, force: true });
-        });
+        })
     }
 
     async goToSummaryPage() {
