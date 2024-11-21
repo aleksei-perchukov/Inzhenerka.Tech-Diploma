@@ -28,7 +28,7 @@ test.describe('dev.topklik.online', async () => {
         await allure.tags('Positive', 'Main Page');
         await allure.feature("Table Constructor");
 
-        const mainPage = new MainPage(page);
+        const mainPage = new MainPage(context, page);
         await mainPage.hideTableTop();
     });
 
