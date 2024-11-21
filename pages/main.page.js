@@ -27,7 +27,7 @@ export class MainPage {
         await test.step('Check user is logged in', async () => {
             const userName = process.env.LOGIN[0].toUpperCase() + process.env.LOGIN.substring(1, 6);
             await this.page.reload();
-            await expect.soft(this.orderList).toBeVisible({ timeout: 20000 });
+            await expect.soft(this.orderList, `Check order list is visible`).toBeVisible({ timeout: 20000 });
             await expect.soft(this.userName, `Check username is '${userName}'`).toHaveText(userName, { timeout: 20000 });
         })
     }
