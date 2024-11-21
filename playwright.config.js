@@ -11,8 +11,7 @@ export default defineConfig({
   run_headless: process.env.HEADLESS,
   reporter: [["line"], ["allure-playwright",
     {
-      detail: false,
-      mode: 'minimal',
+      detail: true,
       outputFolder: 'allure-results',
       suiteTitle: true,
       environmentInfo: {
