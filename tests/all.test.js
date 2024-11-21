@@ -31,7 +31,6 @@ test.describe('dev.topklik.online', async () => {
         const mainPage = new MainPage(page);
         await mainPage.checkLoginName();
         await mainPage.hideTableTop();
-
     });
 
     test('3. Switch "P-shaped tabletop" toggle', async ({ page }) => {
@@ -44,7 +43,6 @@ test.describe('dev.topklik.online', async () => {
         const mainPage = new MainPage(page);
         await mainPage.checkLoginName();
         await mainPage.selectPShaped();
-        await page.waitForTimeout(1000);
         await expect.soft(mainPage.tableTopType, `Check ${text} title is visible`).toHaveText(text);
     });
 

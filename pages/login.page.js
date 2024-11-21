@@ -7,6 +7,7 @@ export class LoginPage {
         this.loginField = page.locator('[name="login"]');
         this.passwordField = page.locator('[name="pass"]');
         this.button = page.locator('[type="button"]');
+        this.error = page.getByText('некорректные данные, повторите попытку');
     }
 
     async login() {
