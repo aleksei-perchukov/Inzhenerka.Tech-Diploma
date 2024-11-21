@@ -54,7 +54,6 @@ test.describe('dev.topklik.online', async () => {
         const thickness = 4;
         const color = 'N-103 Gray Onix';
         const mainPage = new MainPage(page);
-        await mainPage.checkLoginName();
 
         await mainPage.selectPShaped();
         await mainPage.selectThickness(thickness.toString());
@@ -76,9 +75,9 @@ test.describe('dev.topklik.online', async () => {
         const option = 'Проточки для стока воды';
         const total = '500000.00 ₽';
 
-        expect.soft(await calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material, {timeout: 20000});
-        expect.soft(await calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType, {timeout: 20000});
-        expect.soft(await calculationPage.optionsValue, `Check options include '${option}'`).toContainText(option, {timeout: 20000});
-        expect.soft(await calculationPage.total, `Check total is ${total}`).toContainText(total, {timeout: 20000});
+        expect.soft(await calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material, { timeout: 20000 });
+        expect.soft(await calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType, { timeout: 20000 });
+        expect.soft(await calculationPage.optionsValue, `Check options include '${option}'`).toContainText(option, { timeout: 20000 });
+        expect.soft(await calculationPage.total, `Check total is ${total}`).toContainText(total, { timeout: 20000 });
     });
 });
