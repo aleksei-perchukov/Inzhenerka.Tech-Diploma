@@ -29,7 +29,6 @@ test.describe('dev.topklik.online', async () => {
         await allure.feature("Table Constructor");
 
         const mainPage = new MainPage(page);
-        await mainPage.checkLoginName();
         await mainPage.hideTableTop();
     });
 
@@ -41,7 +40,6 @@ test.describe('dev.topklik.online', async () => {
         const text = 'П-образная столешница';
 
         const mainPage = new MainPage(page);
-        await mainPage.checkLoginName();
         await mainPage.selectPShaped();
         await expect.soft(mainPage.tableTopType, `Check ${text} title is visible`).toHaveText(text);
     });
