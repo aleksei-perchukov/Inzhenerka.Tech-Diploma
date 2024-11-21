@@ -26,7 +26,6 @@ export class MainPage {
     async checkLoginName() {
         await test.step('Check user is logged in', async () => {
             const userName = process.env.LOGIN[0].toUpperCase() + process.env.LOGIN.substring(1, 6);
-            await this.page.reload();
             await expect.soft(this.orderList, `Check order list is visible`).toBeVisible({ timeout: 20000 });
             await expect.soft(this.userName, `Check username is '${userName}'`).toHaveText(userName, { timeout: 20000 });
         })
@@ -43,7 +42,6 @@ export class MainPage {
     async selectPShaped() {
         await test.step('Click on "P-Shaped" button', async () => {
             const tableTopText = 'П-образная столешница';
-            await this.page.reload();
             await this.pShapedButton.click({ timeout: 20000 });
             await expect.soft(this.tableTopType, `Check ${tableTopText} title is visible`).toHaveText(tableTopText, { timeout: 20000 });
         })
