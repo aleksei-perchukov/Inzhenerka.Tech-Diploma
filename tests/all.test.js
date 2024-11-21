@@ -11,7 +11,7 @@ test.beforeEach('Login', async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.login();
     });
-});
+})
 
 test.describe('dev.topklik.online', async () => {
     test('1. Authorization', async ({ page }) => {
