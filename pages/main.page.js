@@ -42,7 +42,7 @@ export class MainPage {
     async selectPShaped() {
         await test.step('Click on "P-Shaped" button', async () => {
             const tableTopText = 'П-образная столешница';
-            await this.pShapedButton.click();
+            await this.pShapedButton.click({timeout: 20000});
             await expect.soft(await this.tableTopType, `Check ${tableTopText} title is visible`).toHaveText(tableTopText, {timeout: 20000});
         })
     }
