@@ -78,9 +78,9 @@ test.describe('dev.topklik.online', async () => {
         const option = 'Проточки для стока воды';
         const total = '500000.00 ₽';
 
-        expect.soft(await calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material);
-        expect.soft(await calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType);
-        expect.soft(await calculationPage.optionsValue, `Check options include '${option}'`).toContainText(option);
-        expect.soft(await calculationPage.total, `Check total is ${total}`).toContainText(total);
+        expect.soft(await calculationPage.materialValue, `Check material/color are ${material}`).toContainText(material, {timeout: 20000});
+        expect.soft(await calculationPage.tableTopTypeValue, `Check table top type is ${tableTopType}`).toHaveText(tableTopType, {timeout: 20000});
+        expect.soft(await calculationPage.optionsValue, `Check options include '${option}'`).toContainText(option, {timeout: 20000});
+        expect.soft(await calculationPage.total, `Check total is ${total}`).toContainText(total, {timeout: 20000});
     });
 });

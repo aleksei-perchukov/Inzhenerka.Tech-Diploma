@@ -7,7 +7,8 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: 12,
+  workers: process.env.CI ? 12 : 1,
+  run_headless: process.env.HEADLESS,
   reporter: [["line"], ["allure-playwright",
     {
       detail: false,
